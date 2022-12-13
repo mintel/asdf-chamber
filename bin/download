@@ -27,8 +27,10 @@ download_release() {
   proc=$(uname -m)
   if [ "$proc" = "x86_64" ]; then
     arch="amd64"
+  elif [ "$proc" = "arm64" ]; then
+    arch="arm64"
   else
-    fail "$TOOL_NAME only has built binaries for amd64."
+    fail "Unsupported architecture: $proc"
   fi
   url="$GH_REPO/releases/download/v${version}/${TOOL_NAME}-v${version}-${os}-${arch}"
 
